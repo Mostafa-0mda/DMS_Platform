@@ -4,9 +4,9 @@ import  requests
 endpoint = "http://localhost:8000/api/home/"
 
 par = {"abc": 123}
-json_data = {"query":"Hello world"}
+#json_data = {"query":"Hello world"}
 
-get_response = requests.get(endpoint, params= par, json= json_data)
+get_response = requests.get(endpoint, params= par )
 
 if get_response.status_code == 200:
   data = get_response.json()
