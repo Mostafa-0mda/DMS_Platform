@@ -19,4 +19,8 @@ class ProductSerializer(serializers.ModelSerializer):
 
     # Define a method to calculate the 'my_discount' field
     def get_my_discount(self, obj):
+        if not hasattr(obj, 'id'):
+            return None
+        if not isinstance(obj, product):
+            return None
         return obj.get_discount()
