@@ -1,8 +1,13 @@
 import  requests
 
-endpoint = "http://localhost:8000/api/products/10/"
+endpoint = "http://localhost:8000/api/products/1/update/"
 
-get_response = requests.get(endpoint)
+data = {
+  "title": "car",
+  "price": 200153.22
+}
+
+get_response = requests.put(endpoint, json=data)
 
 if get_response.status_code == 200:
   data = get_response.json()
