@@ -15,7 +15,7 @@ class ProductListCreateAPIView(generics.ListCreateAPIView):
   queryset = product.objects.all()
   serializer_class = ProductSerializer
   authentication_classes = [authentication.SessionAuthentication]
-  permission_classes = [permissions.IsAuthenticated]
+  permission_classes = [permissions.DjangoModelPermissions]
 
   def perform_create(self, serializer):
     title = serializer.validated_data.get('title')
@@ -37,7 +37,6 @@ product_detail_view = ProductDetailAPIView.as_view()
 
 
 
-
 class ProductUpdateAPIView(generics.UpdateAPIView):
   queryset = product.objects.all()
   serializer_class = ProductSerializer
@@ -48,8 +47,9 @@ class ProductUpdateAPIView(generics.UpdateAPIView):
     if not instance.content:
       instance.content = instance.title
     
-
 product_updata_view = ProductUpdateAPIView.as_view()
+
+
 
 
 class ProductDestroyAPIView(generics.DestroyAPIView):
@@ -60,9 +60,10 @@ class ProductDestroyAPIView(generics.DestroyAPIView):
   def perform_destroy(self, instsnce):
     #instance = serializer.save()
     super().perform_destroy(instsnce)
-    
-
+  
 product_delete_view = ProductDestroyAPIView.as_view()
+
+
 
 
 
